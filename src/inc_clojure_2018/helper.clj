@@ -1,4 +1,4 @@
-(ns in-clojure-2018.helper
+(ns inc-clojure-2018.helper
   (:require [clojure.core.async :refer [go >! <! chan >!! <!! close! offer!]]))
 
 (defn init-es-bulk-updater
@@ -27,12 +27,21 @@
 
 (defn with-stubbed-events*
   [events body-fn]
+  (println "========================================")
+  (println "Input signals")
+  (println "========================================")
+  (doseq [event events]
+    (when-let [m (second event)]
+      (println "\t" m)))
+  (println "========================================")
+  (println "System  behaviour")
+  (println "========================================")
   (let [es-chan (chan)
         kafka-chan (chan 10000)]
     (with-redefs [init-es-bulk-updater (fn [success failure]
                                          (future (loop []
                                                    (let [m (<!! es-chan)]
-                                                     (if (#{:bulk-start :bulk-success} m)
+                                                     (if (#{:es-bulk-start :es-bulk-success} m)
                                                        (success m)
                                                        (failure m))
                                                      (when m
@@ -48,7 +57,8 @@
                                  (offer! kafka-chan m))
                                (close! es-chan)
                                (close! kafka-chan))))))
-        (body-fn)))))
+        (body-fn))))
+  (println "========================================\n\n"))
 
 
 (defmacro with-stubbed-events
