@@ -1,5 +1,5 @@
-(ns in-clojure-talk.core
-  (:require [in-clojure-talk.helper :as h]
+(ns in-clojure-2018.core
+  (:require [in-clojure-2018.helper :as h]
             [clojure.core.async :refer [chan go <! >! <!! >!! alt! go-loop]]))
 
 ;; Problem
