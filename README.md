@@ -1,14 +1,6 @@
-# in_clojure_talk
+# Building a reliable, scalable service with Clojure and Core.async
 
-A Clojure library designed to ... well, that part is up to you.
-
-## Usage
-
-FIXME
-
-## License
-
-Copyright © 2018 FIXME
+Copyright © 2018 Kapil Reddy
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
