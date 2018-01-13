@@ -1,4 +1,4 @@
-(ns inc-clojure-2018.helper
+(ns in-clojure-2018.helper
   (:require [clojure.core.async :refer [go >! <! chan >!! <!! close! offer!]]))
 
 (defn init-es-bulk-updater
